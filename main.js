@@ -122,24 +122,73 @@ console.log(
 
 const fs = require("node:fs");
 
-// Q10
+
+// // Q10
+// console.log("Q 10");
+
+// function deleteFile(filepath, next) {
+//     fs.rm(filepath, (err) => {
+//         if (err) {
+//             console.log(err.message);
+//         } else {
+//             console.log("The file " + path.basename(filepath) + " is deleted");
+//         }
+
+//         console.log(
+//             "======================================================================="
+//         );
+
+//         next();
+//     });
+// }
+
+
+// // Q11
+// function createFolder(filepath) {
+//     console.log("Q 11");
+
+//     fs.mkdirSync(filepath);
+//     console.log("Success");
+
+//     console.log(
+//         "======================================================================="
+//     );
+// }
+
+
+// // Start Q10 and Q11
+// deleteFile("/path/to/file.txt", () => {
+//     createFolder("./text");
+// });
+// i used callback to maintain the shape of output
+
+
+// - 12 
+const eventEmitter = require("node:events");
+console.log("Q 12");
 {
-  console.log("Q 10");
+  const Emitter = new eventEmitter();
   
-  function deleteFile(filepath) {
-    fs.rm(filepath, (err) => {
-      if (err) {
-        console.log(err.message);
-      } else {
-        console.log("The file " + path.basename(filepath) + " is deleted");
-      }
-  
-      console.log(
-        "=======================================================================",
-      );
-  
-    });
-  }
-  deleteFile("/path/to/file.txt");
+  Emitter.on("Start", () => {
+    console.log("Welcome event triggered!");
+    console.log(
+      "=======================================================================",
+    );
+  });
+  Emitter.emit("Start");
 }
 
+
+// - 13
+console.log("Q 13");
+{
+  const login = new eventEmitter();
+  login.on("login", (name) => {
+    console.log("User logged in :", name);
+    console.log(
+         "=======================================================================",
+       );
+  });
+  login.emit("login","Ahmed");
+
+}

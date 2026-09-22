@@ -183,6 +183,25 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  
+  // =========================
+  // Q4 - Get All Users
+  // GET /users
+  // =========================
+  
+  if (req.method === "GET" && req.url === "/users") {
+    const data = fs.readFileSync("./users.json", "utf-8");
+    const users = JSON.parse(data);
+    
+    res.writeHead(200, {
+      "Content-Type": "application/json",
+    });
+    
+    res.end(JSON.stringify(users));
+    
+    return;
+  }
+  
   // =========================
   // Q5 - Get User By ID
   // GET /user/:id
@@ -218,25 +237,6 @@ const server = http.createServer((req, res) => {
 
     return;
   }
-
-  // =========================
-  // Q4 - Get All Users
-  // GET /users
-  // =========================
-
-  if (req.method === "GET" && req.url === "/users") {
-    const data = fs.readFileSync("./users.json", "utf-8");
-    const users = JSON.parse(data);
-
-    res.writeHead(200, {
-      "Content-Type": "application/json",
-    });
-
-    res.end(JSON.stringify(users));
-
-    return;
-  }
-
   // =========================
   // Invalid Route
   // =========================
